@@ -62,6 +62,7 @@ weights = [
 biases = [2.0, 3.0, 0.5]
 
 outputs = np.dot(inputs, np.array(weights).T) + biases
+print(outputs)
 # IMPORTANT!!
 # outputs will become the inputs for the next layer of neurons
 
@@ -85,4 +86,3 @@ biases2 = [-1, 2, -0.5]
 # Output of layer1 are the inputs for layer2
 layer1_outputs = np.dot(inputs, np.array(weights).T) + biases
 layer2_outputs = np.dot(layer1_outputs, np.array(weights2).T) + biases2
-print(layer2_outputs, layer2_outputs.shape)
