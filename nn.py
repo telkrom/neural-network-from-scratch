@@ -62,7 +62,6 @@ weights = [
 biases = [2.0, 3.0, 0.5]
 
 outputs = np.dot(inputs, np.array(weights).T) + biases
-print(outputs)
 # IMPORTANT!!
 # outputs will become the inputs for the next layer of neurons
 
@@ -86,3 +85,45 @@ biases2 = [-1, 2, -0.5]
 # Output of layer1 are the inputs for layer2
 layer1_outputs = np.dot(inputs, np.array(weights).T) + biases
 layer2_outputs = np.dot(layer1_outputs, np.array(weights2).T) + biases2
+
+# ReLU Activation function
+inputs = [0, 2, -1, 3.3, -2.7, 1.1, 2.2, -100]
+
+# ReLU activation
+class Activation_ReLU:
+# Forward pass
+    def forward(self, inputs):
+    # Calculate output values from input
+        self.output = np.maximum(0, inputs)
+
+
+# Softmax Activation Function
+import math
+
+layer_outputs = [2.0, 1.0, 0.1]
+E = math.e
+exp_values = []
+for output in layer_outputs:
+    exp_values.append(E ** output)
+#print("Exponentiaded Values:")
+#print(exp_values)
+
+# Now Normalize Values
+norm_base = sum(exp_values)
+norm_values = []
+for value in exp_values:
+    norm_values.append(value / norm_base)
+#print("Normalized Expornentiaded values:")
+#print(norm_values)
+
+#print("Sum of normalized values:", sum(norm_values))
+
+#print("**** WITH NUMPY ****")
+exp_values = np.exp(layer_outputs)
+#print("Exponentiated Values:", exp_values)
+norm_values = exp_values / np.sum(exp_values)
+#print("Normalized Values:", norm_values)
+#print("Sum of normalized values:", np.sum(norm_values))
+
+exp_values = np.exp(inputs)
+probabilities = exp_values / np.sum(exp_values, axis=1, keepdims=True)
